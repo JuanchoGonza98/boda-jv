@@ -89,3 +89,58 @@ h1 {
 #music-toggle:hover {
   transform: scale(1.1);
 }
+
+#bg-video {
+  cursor: pointer;
+}
+/* ----- Pantalla de bienvenida ----- */
+.welcome-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f8f4ec;
+  color: #405c4e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 999;
+  transition: opacity 1s ease;
+}
+
+.welcome-content {
+  text-align: center;
+}
+
+.welcome-content h1 {
+  font-size: 2.8em;
+  margin-bottom: 0.3em;
+}
+
+.subtitle {
+  font-size: 1.2em;
+  margin-bottom: 1.5em;
+}
+
+.enter-btn {
+  background-color: #405c4e;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 30px;
+  font-size: 1.1em;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.enter-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Ocultar elementos hasta entrar */
+.hidden {
+  display: none;
+}
