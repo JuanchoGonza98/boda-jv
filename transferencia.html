@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transferencia – Boda J&V</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .transfer-card{
+      width: min(720px, 100%);
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.10);
+      text-align: left;
+      margin-top: 18px;
+    }
+    .transfer-title{
+      margin: 10px 0 0;
+      text-align: center;
+    }
+    .transfer-subtitle{
+      margin: 6px 0 14px;
+      text-align: center;
+      opacity: .9;
+    }
+    .transfer-row{
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0,0,0,.08);
+    }
+    .transfer-row:last-child{ border-bottom: 0; }
+    .transfer-label{
+      font-size: .95rem;
+      opacity: .85;
+      margin-bottom: 2px;
+    }
+    .transfer-value{
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #2e4439;
+      word-break: break-word;
+    }
+    .copy-btn{
+      padding: 8px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(0,0,0,.12);
+      background: #fff;
+      cursor: pointer;
+      font-weight: 700;
+      color: #405c4e;
+      transition: .2s;
+      white-space: nowrap;
+    }
+    .copy-btn:hover{ transform: scale(1.03); }
+    .top-actions{
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2 class="transfer-title">Datos para transferencia</h2>
+  <p class="transfer-subtitle">Podés copiar y pegar desde aquí.</p>
+
+  <div class="top-actions buttons">
+    <a href="index.html" class="btn">← Volver a la invitación</a>
+  </div>
+
+  <div class="transfer-card">
+
+    <div class="transfer-row">
+      <div>
+        <div class="transfer-label">Alias / N° de Teléfono</div>
+        <div class="transfer-value" id="alias">+595982388158</div>
+      </div>
+      <button class="copy-btn" type="button" data-copy="#alias">Copiar</button>
+    </div>
+
+    <div class="transfer-row">
+      <div>
+        <div class="transfer-label">Titular</div>
+        <div class="transfer-value" id="titular">Juan Andres Gonzalez Arevalos</div>
+      </div>
+      <button class="copy-btn" type="button" data-copy="#titular">Copiar</button>
+    </div>
+
+    <div class="transfer-row">
+      <div>
+        <div class="transfer-label">Banco</div>
+        <div class="transfer-value" id="banco">Familiar</div>
+      </div>
+      <button class="copy-btn" type="button" data-copy="#banco">Copiar</button>
+    </div>
+
+    <div class="transfer-row">
+      <div>
+        <div class="transfer-label">N° de Cédula</div>
+        <div class="transfer-value" id="cedula">5207720</div>
+      </div>
+      <button class="copy-btn" type="button" data-copy="#cedula">Copiar</button>
+    </div>
+
+    <div class="transfer-row">
+      <div>
+        <div class="transfer-label">Cuenta (desde Banco Familiar)</div>
+        <div class="transfer-value" id="cta_bf">81-4620642</div>
+      </div>
+      <button class="copy-btn" type="button" data-copy="#cta_bf">Copiar</button>
+    </div>
+
+    <div class="transfer-row">
+      <div>
+        <div class="transfer-label">Cuenta (otros bancos)</div>
+        <div class="transfer-value" id="cta_otros">814620642</div>
+      </div>
+      <button class="copy-btn" type="button" data-copy="#cta_otros">Copiar</button>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('[data-copy]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const selector = btn.getAttribute('data-copy');
+        const el = document.querySelector(selector);
+        const text = (el?.textContent || '').trim();
+
+        try {
+          await navigator.clipboard.writeText(text);
+          const old = btn.textContent;
+          btn.textContent = 'Copiado';
+          setTimeout(() => (btn.textContent = old), 1200);
+        } catch (e) {
+          alert('No se pudo copiar automáticamente. Copiá manualmente el texto.');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
